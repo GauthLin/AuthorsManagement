@@ -18,6 +18,9 @@ var hero_service_1 = require("./hero.service");
 var hero_detail_component_1 = require("./hero-detail.component");
 var dashboard_component_1 = require("./dashboard.component");
 var add_hero_component_1 = require("./add-hero.component");
+var add_article_component_1 = require("./add-article.component");
+var article_service_1 = require("./article.service");
+var article_detail_component_1 = require("./article-detail.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -44,6 +47,14 @@ var AppModule = (function () {
                     {
                         path: 'add-hero',
                         component: add_hero_component_1.AddHeroComponent
+                    },
+                    {
+                        path: 'add-article',
+                        component: add_article_component_1.AddArticleComponent
+                    },
+                    {
+                        path: 'detail-article/:id',
+                        component: article_detail_component_1.ArticleDetailComponent
                     }
                 ])
             ],
@@ -52,9 +63,12 @@ var AppModule = (function () {
                 dashboard_component_1.DashboardComponent,
                 hero_detail_component_1.HeroDetailComponent,
                 add_hero_component_1.AddHeroComponent,
+                add_article_component_1.AddArticleComponent,
+                article_detail_component_1.ArticleDetailComponent,
             ],
             providers: [
-                hero_service_1.HeroService
+                hero_service_1.HeroService,
+                article_service_1.ArticleService,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

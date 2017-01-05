@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var hero_service_1 = require("./hero.service");
+var article_service_1 = require("./article.service");
 var DashboardComponent = (function () {
-    function DashboardComponent(heroService) {
+    function DashboardComponent(heroService, articleService) {
         this.heroService = heroService;
+        this.articleService = articleService;
         this.heroes = [];
+        this.articles = [];
     }
     DashboardComponent.prototype.deleteHero = function (hero) {
         if (confirm('Êtes-vous sûr de vouloir supprimer ' + hero.firstname + ' ' + hero.lastname.toUpperCase() + ' de la liste des auteurs ?')) {
@@ -21,10 +24,18 @@ var DashboardComponent = (function () {
             this.heroes.splice(this.heroes.indexOf(hero), 1);
         }
     };
+    DashboardComponent.prototype.deleteArticle = function (article) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer l'article '" + article.title + "' de la liste des articles ?")) {
+            this.articleService.del(article);
+            this.articles.splice(this.articles.indexOf(article), 1);
+        }
+    };
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.heroService.getHeroes()
             .then(function (heroes) { return _this.heroes = heroes; });
+        this.articleService.getArticles()
+            .then(function (articles) { return _this.articles = articles; });
     };
     DashboardComponent = __decorate([
         core_1.Component({
@@ -33,7 +44,7 @@ var DashboardComponent = (function () {
             templateUrl: 'dashboard.component.html',
             styleUrls: ['dashboard.component.css']
         }), 
-        __metadata('design:paramtypes', [hero_service_1.HeroService])
+        __metadata('design:paramtypes', [hero_service_1.HeroService, article_service_1.ArticleService])
     ], DashboardComponent);
     return DashboardComponent;
 }());

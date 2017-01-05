@@ -40,7 +40,7 @@ class ArticleController extends Controller
                 'title' => $article->getTitle(),
                 'date' => $article->getDate(),
                 'text' => $article->getText(),
-                'auteurs' => $auteurs
+                'authors' => $auteurs
             );
         }
 
@@ -60,7 +60,7 @@ class ArticleController extends Controller
 
         $result = array();
 
-        if ($article) {
+        if ($article !== null) {
             $auteurs = array();
 
             foreach ($article->getAuteurs() as $auteur) {
@@ -72,12 +72,12 @@ class ArticleController extends Controller
                 );
             }
 
-            $results[] = array(
+            $result = array(
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'date' => $article->getDate(),
                 'text' => $article->getText(),
-                'auteurs' => $auteurs
+                'authors' => $auteurs
             );
         }
 

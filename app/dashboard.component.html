@@ -11,3 +11,16 @@
         <div class="delete" (click)="deleteHero(hero)">Supprimer</div>
     </a>
 </div>
+
+<h2>Liste des articles</h2>
+<div class="grid grid-pad">
+    <div *ngIf="articles.length == 0">
+        Il n'y a encore aucun article !
+    </div>
+    <a *ngFor="let article of articles" class="col-1-4">
+        <div class="module hero" [routerLink]="['/detail-article', article.id]">
+            <div class="title">{{article.title}}</div>
+        </div>
+        <div class="delete" (click)="deleteArticle(article)">Supprimer</div>
+    </a>
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import {Hero} from "./hero";
 import {HeroService} from "./hero.service";
+import {Article} from "./article";
+import {ArticleService} from "./article.service"
 
 @Component({
     moduleId: module.id,
@@ -12,8 +14,12 @@ import {HeroService} from "./hero.service";
 
 export class DashboardComponent implements OnInit{
     heroes: Hero[] = [];
+    articles: Article[] = [];
     
-    constructor (private heroService: HeroService) {}
+    constructor (
+        private heroService: HeroService,
+        private articleService: ArticleService
+    ) {}
 
     deleteHero(hero: Hero): void {
         if (confirm('Êtes-vous sûr de vouloir supprimer '+ hero.firstname +' '+ hero.lastname.toUpperCase() +' de la liste des auteurs ?')) {
@@ -22,8 +28,18 @@ export class DashboardComponent implements OnInit{
         }
     }
 
+    deleteArticle(article: Article): void {
+        if (confirm("Êtes-vous sûr de vouloir supprimer l'article '"+ article.title +"' de la liste des articles ?")) {
+            this.articleService.del(article);
+            this.articles.splice(this.articles.indexOf(article), 1);
+        }
+    }
+
     ngOnInit():void {
         this.heroService.getHeroes()
-          .then(heroes => this.heroes = heroes)
+          .then(heroes => this.heroes = heroes);
+
+        this.articleService.getArticles()
+            .then(articles => this.articles = articles);
     }
 }

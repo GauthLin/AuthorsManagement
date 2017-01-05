@@ -1,0 +1,22 @@
+<div *ngIf="article">
+    <h2>Modification de l'article {{article.title}}</h2>
+    <div>
+        <label for="title">Titre: </label>
+        <input [(ngModel)]="article.title" placeholder="Titre" id="title"/>
+    </div>
+    <div>
+        <label for="date">Date: </label>
+        <input [(ngModel)]="article.date" placeholder="Date" id="date" type="date"/>
+    </div>
+    <div>
+        <label for="text">Texte: </label>
+        <textarea [(ngModel)]="article.text" id="text" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="authors">Auteurs: </label>
+        <select id="authors" [(ngModel)]="authors_selected" multiple>
+            <option *ngFor="let author of authors" value="{{author.id}}">{{author.firstname}} {{author.lastname}}</option>
+        </select>
+    </div>
+    <label></label><button (click)="goBack()" class="default">Annuler</button> <button (click)="save(authors_selected)" class="success">Modifier l'article</button>
+</div>

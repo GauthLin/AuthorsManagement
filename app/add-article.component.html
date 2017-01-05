@@ -1,0 +1,21 @@
+<h2>Ajout d'un article</h2>
+<div id="display-errors"></div>
+<div>
+    <label for="title">Titre: </label>
+    <input [(ngModel)]="title" placeholder="Titre" id="title"/>
+</div>
+<div>
+    <label for="date">Date: </label>
+    <input [(ngModel)]="date" placeholder="Date" id="date" type="date"/>
+</div>
+<div>
+    <label for="text">Texte: </label>
+    <textarea [(ngModel)]="text" id="text" cols="30" rows="10"></textarea>
+</div>
+<div>
+    <label for="authors">Auteurs: </label>
+    <select id="authors" [(ngModel)]="authors_selected" multiple>
+        <option *ngFor="let author of authors" value="{{author.id}}">{{author.firstname}} {{author.lastname}}</option>
+    </select>
+</div>
+<label></label><button (click)="goBack()" class="default">Annuler</button> <button (click)="addArticle(title, date, text, authors_selected)" class="success">Ajouter l'article</button>

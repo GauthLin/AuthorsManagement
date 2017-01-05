@@ -9,6 +9,9 @@ import {HeroService} from "./hero.service";
 import {HeroDetailComponent} from "./hero-detail.component";
 import {DashboardComponent} from "./dashboard.component";
 import {AddHeroComponent} from "./add-hero.component";
+import {AddArticleComponent} from "./add-article.component";
+import {ArticleService} from "./article.service";
+import {ArticleDetailComponent} from "./article-detail.component";
 
 @NgModule({
     imports: [
@@ -32,6 +35,14 @@ import {AddHeroComponent} from "./add-hero.component";
             {
                 path: 'add-hero',
                 component: AddHeroComponent
+            },
+            {
+                path: 'add-article',
+                component: AddArticleComponent
+            },
+            {
+                path: 'detail-article/:id',
+                component: ArticleDetailComponent
             }
         ])
     ],
@@ -40,9 +51,12 @@ import {AddHeroComponent} from "./add-hero.component";
         DashboardComponent,
         HeroDetailComponent,
         AddHeroComponent,
+        AddArticleComponent,
+        ArticleDetailComponent,
     ],
     providers: [
-        HeroService  
+        HeroService,
+        ArticleService,
     ],
     bootstrap: [ AppComponent ]
 })
